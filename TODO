@@ -1,0 +1,15 @@
+AKTUELL:
+
+* Einstellungen
+* Bugs fixen
+
+ALLGEMEIN:
+* Wenn man ein neues Projekt erstellt hat die Haupt-Datei eine Zeile zu viel am Ende.
+* Rückgängig, Wiederholen, Ausschneiden, Kopieren, Einfügen nicht sensitive wenn sie nicht benutzbar sind
+* Tastenkombinationen in den Menüs.
+* Suchen, Ersetzen implementieren
+* Tabs müssen mit ALT + Nummer erreichbar sein.
+* OpenGL-Python-Template hinzufügen
+* Fenstertitel sollte sich irgendwie ändern
+* Fußleiste muss ihre Höhe beim resizen behalten
+* Neue Datein müssen hinzugefügt werden können
