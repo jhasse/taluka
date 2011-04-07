@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2007-2009 Jan Niklas Hasse <jhasse@gmail.com>
+# Copyright 2007-2011 Jan Niklas Hasse <jhasse@gmail.com>
 #
 # This file is part of Taluka.
 #
@@ -86,8 +86,7 @@ class Window(gtk.Window):
 		
 		debug_message(DEBUG_WINDOW, "Create taluka notebook")
 		self._notebook = Notebook()
-	  	self._vpaned.pack1(self._notebook, True, True)
-	  	self._notebook.show()
+		self.add_notebook(self._notebook)
 
 		# side and bottom panels
 	  	self.create_side_panel()
@@ -116,16 +115,6 @@ class Window(gtk.Window):
 			self.drag_dest_set_target_list(tl)
 
 		tl += (TARGET_URI_LIST,)
-
-		# Connect signals TODO
-#		self._notebook.connect("switch_page", self.notebook_switch_page)
-#		self._notebook.connect("tab_added", self.notebook_tab_added)
-#		self._notebook.connect("tab_removed", self.notebook_tab_removed)
-#		self._notebook.connect("tabs_reordered", self.notebook_tabs_reordered)
-#		self._notebook.connect("tab_detached", self.notebook_tab_detached)
-#		self._notebook.connect("tab_close_request", self.notebook_tab_close_request)
-#		self._notebook.connect("button-press-event", self.notebook_button_press_event)
-#		self._notebook.connect("popup-menu", self.notebook_popup_menu)
 
 		# connect instead of override, so that we can
 		# share the cb code with the view TODO
@@ -370,6 +359,11 @@ class Window(gtk.Window):
 
 		self.show() # FIXME: Remove this file and use something like gedit-session.c instead.
 
+	def add_notebook(self, notebook):
+		self._vpaned.pack1(notebook, True, True)
+		notebook.show()
+		self.connect_notebook_signals(notebook)
+
 	def	init_panels_visibility(self):
 		debug(DEBUG_WINDOW)
 
@@ -498,13 +492,6 @@ class Window(gtk.Window):
 		self.abt.run()
 		self.abt.hide_all()
 	
-# 	def open_file(self, uri, workingdir = ''):
-# 		for document in self.get_documents:
-# 			if document.get_uri() == uri:
-# 				document.
-# 			File(self, filename, workingdir)
-	
-
 	def on_build_activate(self, data):
 		pass
 		
@@ -976,6 +963,17 @@ class Window(gtk.Window):
 	
 	def create_bottom_panel(self):
 		pass # TODO: Implement this
+
+	def connect_notebook_signals(self, notebook):
+		notebook.connect("switch_page", notebook_switch_page, self)
+		# TODO:
+#		notebook.connect("tab-added", notebook_tab_added, self)
+#		notebook.connect("tab-removed", notebook_tab_removed, self)
+#		notebook.connect("tabs-reordered", notebook_tabs_reordered, self)
+#		notebook.connect("tab-detached", notebook_tab_detached, self)
+#		notebook.connect("tab-close-request", notebook_tab_close_request, self)
+#		notebook.connect("button-press-event", notebook_button_press_event, self)
+#		notebook.connect("popup-menu", notebook_popup_menu, self)
 
 def recent_manager_changed(manager, window):
 	# regenerate the menu when the model changes
