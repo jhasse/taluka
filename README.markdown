@@ -2,7 +2,9 @@ Taluka IDE
 ==========
 
 Taluka aims to be an easy-to-use and extensible IDE written in Python and using
-the Gtk+ toolkit. It's still in the beginning of development and not usable yet.
+the Gtk+ toolkit. It's not usable yet.
+
+I'm no longer working on it, but maybe someone else wants to?
 
 Gedit compatibility
 -------------------
